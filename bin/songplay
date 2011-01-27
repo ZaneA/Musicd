@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ -e $1 ]; then
+        less -NS ${HOME}/.musicd/playlist
+        exit
+fi
+
+NUM=$1
+NUMHEAD=$(($1-1))
+tail -n+$NUM ${HOME}/.musicd/playlist > ${HOME}/.musicd/playlist.temp
+head -n$NUMHEAD ${HOME}/.musicd/playlist >> ${HOME}/.musicd/playlist.temp
+mv ${HOME}/.musicd/playlist.temp ${HOME}/.musicd/playlist
+echo -e "stop\nloadlist ${HOME}/.musicd/playlist" > ${HOME}/.musicd/control

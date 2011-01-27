@@ -1,0 +1,2 @@
+#!/bin/sh
+while true; do mplayer -input file=${HOME}/.musicd/control -quiet -playlist ${HOME}/.musicd/playlist | songinfo; sleep 1; done

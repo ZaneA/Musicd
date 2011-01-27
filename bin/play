@@ -1,0 +1,83 @@
+#!/usr/bin/env python2
+
+# Musicd Interface Script
+
+import io;
+import os;
+import sys;
+import random;
+import string;
+from subprocess import Popen, PIPE;
+
+valid_types = ['mp3', 'mp4', 'wma', 'm4a', 'flac', 'wmv', 'avi', 'mpg', 'ogm', 'mkv', 'flv'];
+
+playlist_path = os.getenv('HOME') + '/.musicd/playlist';
+control_path = os.getenv('HOME') + '/.musicd/control';
+
+if len(sys.argv) == 1:
+	print('Usage: %s [-output] [+]<path/url/search>[+][path/url/search]' % os.path.basename(sys.argv[0]));
+	print('  path is any string containing /');
+	print('  url is any string containing ://');
+	print('  search is anything else');
+	print('  + at start of argument list causes playlist to shuffle');
+	print('  + in between queries causes them to be joined');
+	exit();
+
+args = sys.argv;
+args.pop(0);
+
+if args[0] == '-output':
+	output = True;
+	args.pop(0);
+else:
+	output = False;
+
+args = ' '.join(args);
+if args[0] == '+':
+	args = args.lstrip('+');
+	shuffle = True;
+else:
+	shuffle = False;
+
+args = args.split('+');
+
+output = '';
+
+for match in args:
+	if match.find('://') != -1:
+		# Push match to playlist_path directly
+		output += match + '\n';
+	elif match.find(':cdrom:') != -1:
+		output += 'cdda://\n';
+		break;
+	elif match.find(':dvd:') != -1:
+		output += 'dvd://1\n';
+		break;
+	elif match.find('/') != -1:
+		# Get file/files under match, exclude unknown extensions, sort, and push to playlist_path
+		findp = Popen(['find', match, '-type', 'f'], stdout=PIPE);
+		grepp = Popen(['grep', '-i', '-E', '|'.join(valid_types) + '$'], stdin=findp.stdout, stdout=PIPE);
+		sortp = Popen(['sort'], stdin=grepp.stdout, stdout=PIPE);
+		output += sortp.communicate()[0];
+	else:
+		# Use 'locate' to find files, exclude unknown extensions, push to playlist_path
+		locatep = Popen(['locate', '-i', match], stdout=PIPE);
+		grepp = Popen(['grep', '-i', '-E', '|'.join(valid_types) + '$'], stdin=locatep.stdout, stdout=PIPE);
+		output += grepp.communicate()[0];
+
+if shuffle:
+	output = output.split('\n');
+	random.shuffle(output);
+	output = '\n'.join(output);
+
+if output == True:
+	print(output);
+else:
+	playlist = open(playlist_path, 'w');
+	playlist.write(output);
+	playlist.close();
+
+	control = open(control_path, 'w');
+	control.write('stop\n');
+	control.write('loadlist ' + playlist_path + '\n');
+	control.close();

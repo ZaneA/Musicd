@@ -1,0 +1,42 @@
+#!/usr/bin/conky -d -c
+##	.conkyrc configuration
+alignment top_left
+background yes
+border_margin 0
+border_width 0
+#default_color 8f8f8f		# szary 5f5f5f
+#default_color ffffff		# szary 5f5f5f
+#default_color 000000		# szary 5f5f5f
+#default_color 333333
+default_color dddddd
+default_outline_color 000000 	# Black
+default_shade_color 333333	# Black
+double_buffer yes
+draw_borders no
+draw_graph_borders no
+draw_outline no
+draw_shades no
+gap_x 25
+gap_y 38
+max_specials 1024
+max_user_text 10000
+minimum_size 100 100
+net_avg_samples 2
+no_buffers yes
+override_utf8_locale yes
+own_window yes
+own_window_colour 000000	# Black
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_transparent yes
+own_window_type desktop 	## normal
+pad_percents 2			# to co nizej, miejsc po przecinku
+short_units yes			# krotka wersja podawania wielkosci dyskow np. 612.21M/3.80G
+stippled_borders 3
+text_buffer_size 8000
+total_run_times 0
+update_interval 5.0
+uppercase no
+use_spacer right
+
+TEXT
+${image ~/.musicd/albumart -p 0x0 -s 100x100 -n}

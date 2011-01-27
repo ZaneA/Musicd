@@ -1,0 +1,1 @@
+echo "pt_step -1" > ${HOME}/.musicd/control

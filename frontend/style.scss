@@ -1,0 +1,166 @@
+// Variables
+
+$page_width       : 100%;
+
+$background_color : #111;
+$text_color       : #fff;
+$link_color       : #f64;
+
+$fonts            : "Helvetica Neue", "Calibri", "Trebuchet MS", helvetica, arial, sans;
+$fontsize         : 16px;
+
+
+// CSS3 Mixins
+
+@mixin inline_block {
+  display: inline-block;
+  // IE 6/7
+  *zoom: 1;
+  *display: inline;
+}
+
+@mixin border_radius($t:5px, $r:$t, $b:$t, $l:$t) {
+  -moz-border-radius: $t $r $b $l;
+  -webkit-border-radius: $t $r $b $l;
+  border-radius: $t $r $b $l;
+}
+
+@mixin box_shadow($h:2px, $v:2px, $blur:2px, $color:#999) {
+  -moz-box-shadow: $h $v $blur $color;
+  -webkit-box-shadow: $h $v $blur $color;
+  box-shadow: $h $v $blur $color;
+}
+
+@mixin inset_box_shadow($h:2px, $v:2px, $blur:2px, $color:#999) {
+  -moz-box-shadow: inset $h $v $blur $color;
+  -webkit-box-shadow: inset $h $v $blur $color;
+  box-shadow: inset $h $v $blur $color;
+}
+
+@mixin linear_gradient($color1, $color2) {
+  background-color: $color1; 
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2'); // IE
+  background-image: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2));
+  background-image: -moz-linear-gradient($color1, $color2);
+}
+
+@mixin shiny_linear_gradient($color1, $color2) {
+  background-color: $color1; 
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2'); // IE
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(46%, $color1), color-stop(54%, $color2));
+  background-image: -moz-linear-gradient($color1 46%, $color2 54%);
+}
+
+// Main Styles
+
+html {
+    font-size: 12px;
+    padding: 20px;
+}
+
+body {
+    width: $page_width;
+    margin: auto;
+
+    font-family: $fonts;
+    font-size: $fontsize;
+
+    background: $background_color;
+    color: $text_color;
+
+    text-align: center;
+}
+
+a {
+    color: $link_color;
+    text-decoration: none;
+
+    &:hover {
+        color: lighten($link_color, 30%);
+    }
+}
+
+
+input {
+    border: 1px solid #aaa;
+    margin: 2px;
+    padding: 2px;
+    font-size: 12px;
+    @include border-radius(3px);
+    @include inset-box-shadow(1px, 2px, 3px, rgba(0, 0, 0, 0.1));
+}
+
+input[type="button"], input[type="submit"] {
+    color: #fff;
+    border: 1px solid #aaa;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 12px;
+
+    @include box-shadow(0, 1px, 6px, rgba(0, 0, 0, 0.2));
+    @include border-radius(5px);
+    @include linear-gradient(#ccc, #999);
+}
+
+.folder {
+    width: 120px;
+    height: 180px;
+    padding: 10px;
+    @include inline-block;
+
+    vertical-align: top;
+
+    position: relative;
+}
+
+img {
+    width: 100px;
+//    height: 120px;
+    margin-top: auto;
+
+    @include border-radius(2px);
+    @include box-shadow(0, 1px, 8px, #000);
+    border: 1px solid #202030;
+
+    opacity: 0.8;
+}
+
+img:hover {
+    opacity: 1;
+}
+
+.folder span {
+    margin: 10px;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    position: absolute;
+    width: 110px;
+    left: 4px;
+    top: 120px;
+
+    padding: 1px;
+
+    text-shadow: -1px -1px 1px #000;
+    color: #333;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 100;
+    text-transform: lowercase;
+}
+
+h3 {
+    font-size: 34px;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 200;
+    color: #888;
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 1px dotted #446;
+}

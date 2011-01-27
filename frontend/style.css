@@ -1,0 +1,101 @@
+html {
+  font-size: 12px;
+  padding: 20px; }
+
+body {
+  width: 100%;
+  margin: auto;
+  font-family: "Helvetica Neue", "Calibri", "Trebuchet MS", helvetica, arial, sans;
+  font-size: 16px;
+  background: #111111;
+  color: white;
+  text-align: center; }
+
+a {
+  color: #ff6644;
+  text-decoration: none; }
+  a:hover {
+    color: #ffe3dd; }
+
+input {
+  border: 1px solid #aaa;
+  margin: 2px;
+  padding: 2px;
+  font-size: 12px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  -moz-box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.1); }
+
+input[type="button"], input[type="submit"] {
+  color: #fff;
+  border: 1px solid #aaa;
+  padding: 2px;
+  font-weight: bold;
+  font-size: 12px;
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  background-color: #cccccc;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#999999));
+  background-image: -moz-linear-gradient(#cccccc, #999999); }
+
+.folder {
+  width: 120px;
+  height: 180px;
+  padding: 10px;
+  display: inline-block;
+  *zoom: 1;
+  *display: inline;
+  vertical-align: top;
+  position: relative; }
+
+img {
+  width: 100px;
+  margin-top: auto;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border-radius: 2px 2px 2px 2px;
+  -moz-box-shadow: 0 1px 8px black;
+  -webkit-box-shadow: 0 1px 8px black;
+  box-shadow: 0 1px 8px black;
+  border: 1px solid #202030;
+  opacity: 0.8; }
+
+img:hover {
+  opacity: 1; }
+
+.folder span {
+  margin: 10px;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  position: absolute;
+  width: 110px;
+  left: 4px;
+  top: 120px;
+  padding: 1px;
+  text-shadow: -1px -1px 1px black;
+  color: #333; }
+
+h1, h2, h3, h4 {
+  font-weight: 100;
+  text-transform: lowercase; }
+
+h3 {
+  font-size: 34px; }
+
+h4 {
+  font-size: 20px;
+  font-weight: 200;
+  color: #888; }
+
+u {
+  text-decoration: none;
+  border-bottom: 1px dotted #446; }
